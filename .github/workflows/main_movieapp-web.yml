@@ -14,10 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy static HTML page to Azure Web App
+      - name: Upload static files to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'movieapp-web'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_86100997145C48DE94169CC3E1C0F56C }}
-          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: './'
