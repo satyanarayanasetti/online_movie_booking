@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Upload static files to Azure Web App
+      - name: Deploy static HTML page to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'movieapp-web'
