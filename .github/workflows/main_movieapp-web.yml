@@ -11,10 +11,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy static HTML page to Azure Web App
+      - name: Deploy static site to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'movieapp-web'
