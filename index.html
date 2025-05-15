@@ -1,80 +1,154 @@
-<Html>  
-    <head>   
-    <title>  
-   Binge Watch Online  
-    </title>  
-    </head>  
-    <body bgcolor="Lightskyblue">  
-    <br>  
-    <br>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Binge Watch Online</title>
+    <style>
+        body {
+            background-color: lightskyblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    <form>  
-      
-    <label> Firstname </label>         
-    <input type="text" name="firstname" size="15"/> <br> <br>  
-    <label> Lastname: </label>         
-    <input type="text" name="lastname" size="15"/> <br> <br>  
-     
-    <label>   
-        Gender :  
-        </label><br>  
-        <input type="radio" name="male"/> Male <br>  
-        <input type="radio" name="female"/> Female <br>  
-        <input type="radio" name="other"/> Other  <br>  
-        <br>  
+        .form-container {
+            background-color: white;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #d32f2f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    <label>   
-        Phone :  
-        </label>  
-        <input type="text" name="country code"  value="+91" size="2"/>   
-        <input type="text" name="phone" size="10"/> <br> <br>  
-        
-        Email:  
-        <input type="email" id="email" name="email"/> <br>    
-        <br> <br>  
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-        Password:  
-        <input type="Password" id="pass" name="pass"> <br>   
-        <br> <br> 
+        .form-column {
+            flex: 1;
+            min-width: 300px;
+        }
 
-        Re-type password:  
-        <input type="Password" id="repass" name="repass"> <br> <br>  
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-    <label>   
-        Movie Genres :  
-    </label>   
-    <select>  
-    <option value="Movie Genres">Movie Genres</option>  
-    <option value="Action">Action</option>  
-    <option value="Romance">Romance</option>  
-    <option value="Adventure">Adventure</option>  
-    <option value="Horror">Horror</option>  
-    <option value="Animation">Animation</option>  
-    <option value="Comedy">Comedy</option>  
-    </select>  
-    <br> <br>
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
 
-    <label>   
-        Plans :  
-    </label>   
-    <select> 
-    <option value="Plans">Plans</option>     
-    <option value="Monthly Plan">Monthly Plan</option>  
-    <option value="Half-yearly Plan">Half-yearly Plan</option>  
-    <option value="Yearly Plan">Yearly Plan</option>  
-    </select>  
-     
+        input[type="radio"] {
+            margin-right: 5px;
+        }
 
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-    <br>  
-    <br>
-    
-    <a href="thankyou.html"><input type="button" value="Submit"></a> 
-    <input type="reset" value="Reset"> 
-    
-      
-      
-    </form>  
-    </body>  
-    </html>  
+        .form-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-actions input {
+            padding: 8px 20px;
+            margin: 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-container p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Binge Watch Online</h2>
+    <form>
+        <div class="form-row">
+            <div class="form-column">
+                <label>Firstname</label>
+                <input type="text" name="firstname" />
+
+                <label>Lastname</label>
+                <input type="text" name="lastname" />
+
+                <label>Email</label>
+                <input type="email" name="email" />
+
+                <label>Password</label>
+                <input type="password" name="pass" />
+
+                <label>Movie Genres</label>
+                <select>
+                    <option value="Movie Genres">Movie Genres</option>
+                    <option value="Action">Action</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Comedy">Comedy</option>
+                </select>
+            </div>
+
+            <div class="form-column">
+                <label>Gender</label>
+                <input type="radio" name="gender" value="male" /> Male
+                <input type="radio" name="gender" value="female" /> Female
+                <input type="radio" name="gender" value="other" /> Other
+
+                <label>Phone</label>
+                <input type="text" name="country code" value="+91" size="2" />
+                <input type="text" name="phone" />
+
+                <label>Re-type Password</label>
+                <input type="password" name="repass" />
+
+                <label>Plans</label>
+                <select>
+                    <option value="Plans">Plans</option>
+                    <option value="Monthly Plan">Monthly Plan</option>
+                    <option value="Half-yearly Plan">Half-yearly Plan</option>
+                    <option value="Yearly Plan">Yearly Plan</option>
+                </select>
+            </div>
+        </div>
+
+        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+        <div class="form-actions">
+            <a href="thankyou.html"><input type="button" value="Submit"></a>
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
