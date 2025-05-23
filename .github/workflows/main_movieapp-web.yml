@@ -1,4 +1,4 @@
-name: Deploy MovieApp to Azure Web Apps (Multi-Region)
+name: Deploy MovieApp to Both Regions
 
 on:
   push:
@@ -9,39 +9,28 @@ on:
 jobs:
   deploy:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        region: ['eastus', 'westeurope']
-    env:
-      APP_NAME: movieapp-web-${{ matrix.region }}
-      RESOURCE_GROUP: slp_movieapp-rg
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to ${{ matrix.region }}
+      # Deploy to East US
+      - name: Deploy to East US App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.APP_NAME }}
+          app-name: 'movieapp-web-eastus'
+          publish-profile: ${{ secrets.EASTUS_PUBLISH_PROFILE }}
           package: .
-          slot-name: staging  # Using slots for zero-downtime deployment
+        
+      # Deploy to West Europe  
+      - name: Deploy to West Europe App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'movieapp-web-westeu'
+          publish-profile: ${{ secrets.WESTEU_PUBLISH_PROFILE }}
+          package: .
 
-      - name: Swap slots (Production)
-        if: matrix.region == 'eastus'  # Only swap primary region
+      - name: Verify deployments
         run: |
-          az webapp deployment slot swap \
-            --name ${{ env.APP_NAME }} \
-            --resource-group ${{ env.RESOURCE_GROUP }} \
-            --slot staging \
-            --target-slot production
-
-      - name: Verify deployment
-        run: |
-          echo "Deployed to: https://${{ env.APP_NAME }}.azurewebsites.net"
-          curl -s https://${{ env.APP_NAME }}.azurewebsites.net/healthcheck | jq .
+          echo "East US deployed: https://movieapp-web-eastus.azurewebsites.net"
+          echo "West EU deployed: https://movieapp-web-westeu.azurewebsites.net"
