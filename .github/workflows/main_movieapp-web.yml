@@ -16,10 +16,14 @@ jobs:
           app-name: 'movieapp-web-eastus'
           publish-profile: ${{ secrets.EASTUS_PUBLISH_PROFILE }}
           package: .
-
+      # Verify East US
+      - run: curl -I https://movieapp-web-eastus.azurewebsites.net
+      
       # Deploy to West Europe
       - uses: azure/webapps-deploy@v3
         with:
           app-name: 'movieapp-web-westeu'
           publish-profile: ${{ secrets.WESTEU_PUBLISH_PROFILE }}
           package: .
+      # Verify West Europe  
+      - run: curl -I https://movieapp-web-westeu.azurewebsites.net
