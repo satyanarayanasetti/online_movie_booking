@@ -1,9 +1,8 @@
-name: Deploy MovieApp to Both Regions
+name: Deploy to Both Regions
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -14,23 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Deploy to East US
-      - name: Deploy to East US App
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Deploy to both regions
+      - name: Deploy to East US
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'movieapp-web-eastus'
-          publish-profile: ${{ secrets.EASTUS_PUBLISH_PROFILE }}
           package: .
-        
-      # Deploy to West Europe  
-      - name: Deploy to West Europe App
+
+      - name: Deploy to West Europe
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'movieapp-web-westeu'
-          publish-profile: ${{ secrets.WESTEU_PUBLISH_PROFILE }}
           package: .
-
-      - name: Verify deployments
-        run: |
-          echo "East US deployed: https://movieapp-web-eastus.azurewebsites.net"
-          echo "West EU deployed: https://movieapp-web-westeu.azurewebsites.net"
